@@ -41,7 +41,7 @@ jobs:
         ssh-keyscan -H $REMOTE_CLUSTER_SSH_IP >> ~/.ssh/known_hosts
         
         # Establish an SSH connection to the remote server in the background, forwarding port 8080
-        ssh -i ~/.ssh/id_rsa -L 8080:localhost:8080 $REMOTE_CLUSTER_SSH_USERNAME@$REMOTE_CLUSTER_SSH_IP -N &
+        ssh -v -i ~/.ssh/id_rsa -L 8080:localhost:8080 $REMOTE_CLUSTER_SSH_USERNAME@$REMOTE_CLUSTER_SSH_IP -N &
        
         # Execute the Jupyter Notebook and overwrite the existing file with the results
         jupyter nbconvert --execute --to notebook --inplace notebooks/demo-pipeline.ipynb
